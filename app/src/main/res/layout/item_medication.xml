@@ -17,14 +17,32 @@
         android:orientation="vertical"
         android:padding="20dp">
 
-        <TextView
-            android:id="@+id/medName"
-            android:layout_width="wrap_content"
+        <!-- Top row: Medication name and delete button -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Medication Name"
-            android:textStyle="bold"
-            android:textSize="18sp"
-            android:textColor="@color/primaryColor"/>
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/medName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Medication Name"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="@color/primaryColor"/>
+
+            <ImageButton
+                android:id="@+id/deleteButton"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@android:drawable/ic_menu_delete"
+                android:contentDescription="Delete"
+                android:tint="@android:color/holo_red_dark"/>
+        </LinearLayout>
 
         <TextView
             android:id="@+id/medDosage"
@@ -43,15 +61,6 @@
             android:textSize="14sp"
             android:textColor="@color/textColor"
             android:layout_marginTop="2dp"/>
-
-        <ImageButton
-            android:id="@+id/deleteButton"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:src="@android:drawable/ic_menu_delete"
-            android:contentDescription="Delete"
-            android:tint="@android:color/holo_red_dark"/>
 
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>
