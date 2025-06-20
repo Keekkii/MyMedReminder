@@ -58,5 +58,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete("medications", "id=?", new String[]{String.valueOf(id)});
     }
+    public void deleteAllMedications() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete("medications", null, null); // This deletes all rows in the medications table
+        db.close();
+    }
 
 }

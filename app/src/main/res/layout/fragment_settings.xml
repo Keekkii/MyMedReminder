@@ -21,9 +21,9 @@
 
             <!-- Large Circular Profile Image -->
             <androidx.cardview.widget.CardView
-                android:layout_width="128dp"
-                android:layout_height="128dp"
-                app:cardCornerRadius="64dp"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                app:cardCornerRadius="90dp"
                 app:cardElevation="4dp"
                 android:layout_gravity="center"
                 app:cardPreventCornerOverlap="true"
@@ -33,11 +33,12 @@
                 <ImageView
                     android:id="@+id/profileImage"
                     android:layout_width="match_parent"
-                    android:layout_height="123dp"
+                    android:layout_height="197dp"
                     android:contentDescription="Profile Image"
                     android:scaleType="centerCrop"
                     android:src="@drawable/ima2" />
             </androidx.cardview.widget.CardView>
+
 
             <!-- Name and Last Name in one row, centered -->
             <LinearLayout

@@ -57,5 +57,19 @@ public class SettingsFragment extends Fragment {
             Toast.makeText(getContext(), "Contact: support@example.com", Toast.LENGTH_LONG).show();
             // Or open email intent
         });
+        btnDeleteAll.setOnClickListener(v -> {
+            // Show a confirmation dialog
+            new android.app.AlertDialog.Builder(getContext())
+                    .setTitle("Delete All Data")
+                    .setMessage("Are you sure you want to delete all medications? This cannot be undone.")
+                    .setPositiveButton("Delete", (dialog, which) -> {
+                        DatabaseHelper dbHelper = new DatabaseHelper(getContext());
+                        dbHelper.deleteAllMedications();
+                        Toast.makeText(getContext(), "All medication data deleted.", Toast.LENGTH_SHORT).show();
+                    })
+                    .setNegativeButton("Cancel", null)
+                    .show();
+        });
+
     }
 }
