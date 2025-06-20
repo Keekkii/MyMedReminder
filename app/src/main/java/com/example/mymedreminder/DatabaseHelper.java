@@ -50,4 +50,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // For simplicity, just get the last added medication
         return db.rawQuery("SELECT * FROM " + TABLE_NAME + " ORDER BY " + COL_ID + " DESC LIMIT 1", null);
     }
+    public Cursor getAllMedications() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.rawQuery("SELECT * FROM medications", null);
+    }
+
 }
