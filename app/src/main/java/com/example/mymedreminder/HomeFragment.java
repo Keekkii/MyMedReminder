@@ -12,6 +12,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 public class HomeFragment extends Fragment {
+    private TextView medNameView;
+    private TextView medTimeView;
+
     public HomeFragment() {
         super(R.layout.fragment_home);
     }
@@ -20,10 +23,27 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // Display next medication
-        TextView medNameView = view.findViewById(R.id.nextMedName);
-        TextView medTimeView = view.findViewById(R.id.nextMedTime);
+        medNameView = view.findViewById(R.id.nextMedName);
+        medTimeView = view.findViewById(R.id.nextMedTime);
 
+        refreshNextMedication();
+
+        // Add Medication button logic
+        Button addMedicationButton = view.findViewById(R.id.addMedicationButton);
+        addMedicationButton.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), AddMedicationActivity.class);
+            startActivity(intent);
+        });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        // Refresh medication info every time the fragment is visible
+        refreshNextMedication();
+    }
+
+    private void refreshNextMedication() {
         DatabaseHelper dbHelper = new DatabaseHelper(getContext());
         Cursor cursor = dbHelper.getNextMedication();
 
@@ -39,12 +59,5 @@ public class HomeFragment extends Fragment {
             medTimeView.setText("");
         }
         cursor.close();
-
-        // Add Medication button logic
-        Button addMedicationButton = view.findViewById(R.id.addMedicationButton);
-        addMedicationButton.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), AddMedicationActivity.class);
-            startActivity(intent);
-        });
     }
 }
