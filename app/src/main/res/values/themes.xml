@@ -1,5 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- App theme using Material Components and NoActionBar -->
+    <style name="Theme.MyMedReminder" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color -->
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorOnPrimary">@color/backgroundColor</item>
 
-    <style name="Theme.MyMedReminder" parent="android:Theme.Material.Light.NoActionBar" />
+        <!-- Secondary brand color -->
+        <item name="colorSecondary">@color/buttonColor</item>
+        <item name="colorOnSecondary">@color/backgroundColor</item>
+
+        <!-- Background and surface -->
+        <item name="android:windowBackground">@color/backgroundColor</item>
+        <item name="colorSurface">@color/backgroundColor</item>
+        <item name="colorOnSurface">@color/textColor</item>
+
+        <!-- Error color -->
+        <item name="colorError">@android:color/holo_red_light</item>
+        <item name="colorOnError">@color/backgroundColor</item>
+
+        <!-- Customize as needed -->
+        <item name="android:textColor">@color/textColor</item>
+    </style>
 </resources>
