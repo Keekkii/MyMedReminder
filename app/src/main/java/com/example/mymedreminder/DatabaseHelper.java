@@ -54,5 +54,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         return db.rawQuery("SELECT * FROM medications", null);
     }
+    public void deleteMedication(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete("medications", "id=?", new String[]{String.valueOf(id)});
+    }
 
 }

@@ -1,5 +1,6 @@
 package com.example.mymedreminder;
 
+import android.app.AlertDialog;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
@@ -27,14 +28,27 @@ public class MedsFragment extends Fragment {
         Cursor cursor = dbHelper.getAllMedications();
 
         while (cursor.moveToNext()) {
+            int id = cursor.getInt(cursor.getColumnIndexOrThrow("id"));
             String name = cursor.getString(cursor.getColumnIndexOrThrow("name"));
             String dosage = cursor.getString(cursor.getColumnIndexOrThrow("dosage"));
             String time = cursor.getString(cursor.getColumnIndexOrThrow("time"));
-            medications.add(new Medication(name, dosage, time));
+            medications.add(new Medication(id, name, dosage, time));
         }
         cursor.close();
 
         MedicationAdapter adapter = new MedicationAdapter(medications);
         recyclerView.setAdapter(adapter);
+
+        adapter.setOnDeleteClickListener((medication, position) -> {
+            // Show confirmation dialog
+            new AlertDialog.Builder(getContext())
+                    .setMessage("Delete this medication?")
+                    .setPositiveButton("Delete", (dialog, which) -> {
+                        dbHelper.deleteMedication(medication.id);
+                        adapter.removeItem(position);
+                    })
+                    .setNegativeButton("Cancel", null)
+                    .show();
+        });
     }
 }
